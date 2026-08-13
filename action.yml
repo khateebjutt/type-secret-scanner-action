@@ -1,0 +1,30 @@
+name: 'Secret Scanner'
+description: 'Scans changed files for leaked API keys, tokens, and other secrets before they hit production.'
+author: 'Khateeb'
+branding:
+  icon: 'lock'
+  color: 'red'
+
+inputs:
+  github-token:
+    description: 'GitHub token used to post PR comments. Defaults to the automatic GITHUB_TOKEN.'
+    required: false
+    default: ${{ github.token }}
+  scan-mode:
+    description: "Either 'diff' (only changed files in a PR) or 'full' (entire repository)."
+    required: false
+    default: 'diff'
+  fail-on-found:
+    description: 'Whether the action should fail the check when secrets are found.'
+    required: false
+    default: 'true'
+
+outputs:
+  findings-count:
+    description: 'Number of potential secrets found.'
+  findings:
+    description: 'JSON array of all findings.'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

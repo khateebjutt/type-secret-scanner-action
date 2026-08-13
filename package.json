@@ -1,0 +1,19 @@
+{
+  "name": "secret-scanner-action",
+  "version": "0.1.0",
+  "description": "GitHub Action that scans PRs for leaked secrets using pattern matching + entropy detection.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/run-tests.js",
+    "build": "ncc build src/index.js -o dist"
+  },
+  "keywords": ["security", "secrets", "github-action", "devsecops"],
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
+  }
+}
